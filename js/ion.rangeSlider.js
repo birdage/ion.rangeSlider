@@ -156,6 +156,8 @@
         this.is_resize = false;
         this.is_click = false;
 
+        this.grid_location = options.grid_location;
+
         this.$cache = {
             win: $(window),
             body: $(document.body),
@@ -1689,7 +1691,9 @@
                     result = this._prettify(result);
                 }
 
-                html += '<span class="irs-grid-text js-grid-text-' + i + '" style="left: ' + big_w + '%">' + result + '</span>';
+                
+                html += '<span class="irs-grid-text js-grid-text-' + i + '" style="left: ' + big_w + '%">' + result + '</span>';                
+        
             }
             this.coords.big_num = Math.ceil(big_num + 1);
 
@@ -1748,6 +1752,11 @@
                 label = this.$cache.grid_labels[i][0];
                 label.style.marginLeft = -this.coords.big_x[i] + "%";
             }
+
+            //hide start and end
+            label.style.visibility = "hidden";
+            label = this.$cache.grid_labels[0][0];
+            label.style.visibility = "hidden";
         },
 
         // Collisions Calc Beta
